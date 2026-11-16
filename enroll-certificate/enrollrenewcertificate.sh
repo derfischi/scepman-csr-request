@@ -244,12 +244,12 @@ authenticate_msi() {
 
     if [[ -n "$client_id" ]]; then
         log debug "Using user assigned managed identity with client ID $client_id for authentication"
-        az login --scope "$api_scope" --identity --client-id "$client_id"
+        az login --scope "$api_scope" --identity --client-id "$client_id" --allow-no-subscriptions
         return $?
     fi
 
     log debug "Authenticate with managed identity"
-    az login --scope "$api_scope" --identity
+    az login --scope "$api_scope" --identity --allow-no-subscriptions
     return $?
 }
 
